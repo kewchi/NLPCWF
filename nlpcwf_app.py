@@ -25,10 +25,10 @@ qa_pipe = load_model()
 
 # Streamlit app
 def main():
-    st.title("Red Panda Q&A")
+    st.title("Hello Kitty Q&A")
 
     # User input
-    context = "The red panda is slightly larger than a domestic cat with a bear-like body and thick russet fur. The belly and limbs are black, and there are white markings on the side of the head and above its small eyes. Red pandas are very skillful and acrobatic animals that predominantly stay in trees. Almost 50% of the red panda’s habitat is in the Eastern Himalayas. They use their long, bushy tails for balance and to cover themselves in winter, presumably for warmth. Primarily an herbivore, the name panda is said to come from the Nepali word ‘ponya,’ which means bamboo or plant eating animal."
+    context = "Hello Kitty, is a fictional character created by Yuko Shimizu, currently designed by Yuko Yamaguchi, and owned by the Japanese company Sanrio. Sanrio depicts Hello Kitty as an anthropomorphized white cat with a red bow and no visible mouth. Hello Kitty was created in 1974 and the first item, a vinyl coin purse, was introduced in 1975. Hello Kitty was designed by Yuko Shimizu and was added to the lineup of early Sanrio characters in 1974.Sanrio's motto is "social communication," and Tsuji wanted the brand name to reflect that by including a greeting. He first considered "Hi Kitty" before finally settling on "Hello Kitty," her current name. Spokespeople for Sanrio have said that Hello Kitty has no mouth, as they want people to "project their feelings onto the character" and "be happy or sad together with Hello Kitty. Another explanation Sanrio has given for Hello Kitty's lack of a mouth is that she "speaks from the heart."
     question = st.text_area("Question", value="What is the answer to...")
 
     # Answer button
