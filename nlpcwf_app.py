@@ -10,6 +10,7 @@ Original file is located at
 # Commented out IPython magic to ensure Python compatibility.
 
 import streamlit as st
+import torch
 import transformers
 from transformers import pipeline, DistilBertTokenizer, DistilBertForQuestionAnswering, AutoModelForQuestionAnswering, AutoTokenizer
 
