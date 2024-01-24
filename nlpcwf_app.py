@@ -22,8 +22,6 @@ def load_model():
     qa_pipe = transformers.pipeline("question-answering", model=model, tokenizer=tokenizer)
     return qa_pipe
 
-qa_pipe = load_model()
-
 # Streamlit app
 def main():
     st.title("Red Panda Q&A")
