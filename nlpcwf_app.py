@@ -15,7 +15,7 @@ from transformers import pipeline, AutoTokenizer, AutoModelForQuestionAnswering
 def load_model():
     # Load DistilBERT model and tokenizer
     tokenizer = AutoTokenizer.from_pretrained("distilbert-base-cased-distilled-squad")
-    model = AutoModelForQuestionAnswering.from_pretrained("distilbert-base-cased-distilled-squad", return_dict=True).half()
+    model = AutoModelForQuestionAnswering.from_pretrained("distilbert-base-cased-distilled-squad", return_dict=True)
 
     # Question answering pipeline
     qa_pipe = pipeline("question-answering", model=model, tokenizer=tokenizer)
