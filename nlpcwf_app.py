@@ -34,7 +34,7 @@ def main():
     # Answer button
     if st.button("Get Answer"):
         # If input is not empty
-        if question.strip() != "" and context.strip() != "":
+        if question.strip() != "":
             
             # Get the answer using the pipeline
             answer = qa_pipe(question=question, context=context)
