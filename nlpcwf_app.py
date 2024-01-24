@@ -8,43 +8,58 @@ Original file is located at
 """
 
 # Commented out IPython magic to ensure Python compatibility.
-
-import streamlit as st
 import transformers
-from transformers import pipeline, DistilBertTokenizer, DistilBertForQuestionAnswering, AutoModelForQuestionAnswering, AutoTokenizer
+import streamlit as st
+import time
 
-def load_model():
-    # Load DistilBERT model and tokenizer
-    tokenizer = transformers.AutoTokenizer.from_pretrained("distilbert-base-cased-distilled-squad")
-    model = transformers.AutoModelForQuestionAnswering.from_pretrained("distilbert-base-cased-distilled-squad", return_dict=True).half()
-
-    # Question answering pipeline
-    qa_pipe = transformers.pipeline("question-answering", model=model, tokenizer=tokenizer)
-    return qa_pipe
-
-qa_pipe = load_model()
-
-# Streamlit app
-def main():
-    st.title("Red Panda Q&A")
+@st.cache_resource
+def load_models():
+    # English to Chinese
+    EN_ZH_MODEL = "Helsinki-NLP/opus-mt-en-zh"
+    en_zh_tokenizer = transformers.AutoTokenizer.from_pretrained(EN_ZH_MODEL)
+    en_zh_model = transformers.AutoModelForSeq2SeqLM.from_pretrained(EN_ZH_MODEL)
+    en_zh_translator = transformers.pipeline("text2text-generation", model=en_zh_model, tokenizer=en_zh_tokenizer)
+    # Chinese to English
+    ZH_EN_MODEL = "Helsinki-NLP/opus-mt-zh-en"
+    zh_en_tokenizer = transformers.AutoTokenizer.from_pretrained(ZH_EN_MODEL)
+    zh_en_model = transformers.AutoModelForSeq2SeqLM.from_pretrained(ZH_EN_MODEL)
+    zh_en_translator = transformers.pipeline("text2text-generation", model=zh_en_model, tokenizer=zh_en_tokenizer)
+    return en_zh_translator, zh_en_translator
     
-    context = st.text_area("Context", value="The red panda (Ailurus fulgens), also known as the lesser panda, is a small mammal native to the eastern Himalayas and southwestern China. It has dense reddish-brown fur with a black belly and legs, white-lined ears, a mostly white muzzle and a ringed tail. Its head-to-body length is 51–63.5 cm (20.1–25.0 in) with a 28–48.5 cm (11.0–19.1 in) tail, and it weighs between 3.2 and 15 kg (7.1 and 33.1 lb). It is well adapted to climbing due to its flexible joints and curved semi-retractile claws. The red panda inhabits coniferous forests as well as temperate broadleaf and mixed forests, favouring steep slopes with dense bamboo cover close to water sources. It is solitary and largely arboreal. It feeds mainly on bamboo shoots and leaves, but also on fruits and blossoms. ")
-    # User input
-    question = st.text_area("Question", value=" ")
+en_zh_translator, zh_en_translator = load_models()
 
-    # Answer button
-    if st.button("Get Answer"):
-      
-      # If input is not empty
-      if question != " ":
-        
-        # Get the answer using the pipeline
-        answer = qa_pipe(question=question, context=context)
+def en_to_zh(input_text):
+    input_text = input_text.strip()
+    if len(input_text) > 0:
+        transation = en_zh_translator(input_text)[0]["generated_text"]
+        return transation.strip()
+    else:
+        return ""
 
-        # Display the answer
-        st.markdown(f"Answer: {answer['answer']}")
-        st.info(f"Confidence: {answer['score']}")
+def zh_to_en(input_text):
+    input_text = input_text.strip()
+    if len(input_text) > 0:
+        transation = zh_en_translator(input_text)[0]["generated_text"]
+        return transation.strip()
+    else:
+        return ""
 
-if __name__ == "__main__":
-  main()
+st.title("English-Chinese Translation App")
+
+direction = st.selectbox("Direction", ["English -> Chinese", "Chinese -> English"])
+
+input_text = st.text_area("Input text", value="")
+
+start_time = time.time()
+if direction == "English -> Chinese":
+    translation = en_to_zh(input_text)
+else:
+    translation = zh_to_en(input_text)
+end_time = time.time()
+
+time_taken = str(round(end_time-start_time,2))
+    
+st.markdown("**Translation**: "+translation)
+
+st.markdown("Time taken: "+str(time_taken)+"s")
 
