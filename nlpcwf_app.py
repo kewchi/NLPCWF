@@ -9,7 +9,7 @@ Original file is located at
 
 # Commented out IPython magic to ensure Python compatibility.
 
-pip install torch torchvision torchaudio
+!pip install torch torchvision torchaudio
 import streamlit as st
 import transformers
 from transformers import pipeline, DistilBertTokenizer, DistilBertForQuestionAnswering, AutoModelForQuestionAnswering, AutoTokenizer
