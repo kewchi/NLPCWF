@@ -25,7 +25,7 @@ qa_pipe = load_model()
 
 # Streamlit app
 def main():
-    st.title("Hello Kitty Q&A")
+    st.title("⋆˚🐾˖° 🍎 Hello Kitty Q&A 🍎 ⋆˚🐾˖°")
 
     # User input
     context = "Hello Kitty, is a fictional character created by Yuko Shimizu, currently designed by Yuko Yamaguchi, and owned by the Japanese company Sanrio. Hello Kitty is a personification of a Japanese Bobtail cat with a red bow and no visible mouth and was created in 1974. Her height is described as five apples and her weight as three apples. Spokespeople for Sanrio have said that Hello Kitty has no mouth, as they want people to project their feelings onto the character and be happy or sad together with Hello Kitty. "
@@ -40,7 +40,7 @@ def main():
             answer = qa_pipe(question=question, context=context)
 
             # Display the answer
-            st.markdown(f"Answer: {answer['answer']}")
+            st.markdown(f"≽ ^ • ⩊ • ^ ≼ 🍎 Answer: {answer['answer']} 🍎 ≽ ^ • ⩊ • ^ ≼")
             st.info(f"Confidence: {answer['score']}")
 
 if __name__ == "__main__":
