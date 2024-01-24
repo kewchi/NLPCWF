@@ -13,12 +13,15 @@ import streamlit as st
 import transformers
 from transformers import pipeline, DistilBertTokenizer, DistilBertForQuestionAnswering, AutoModelForQuestionAnswering, AutoTokenizer
 
-# Load DistilBERT model and tokenizer
-tokenizer = transformers.AutoTokenizer.from_pretrained("distilbert-base-cased-distilled-squad")
-model = transformers.AutoModelForQuestionAnswering.from_pretrained("distilbert-base-cased-distilled-squad", return_dict=True).half()
+def load_model():
+    # Load DistilBERT model and tokenizer
+    tokenizer = transformers.AutoTokenizer.from_pretrained("distilbert-base-cased-distilled-squad")
+    model = transformers.AutoModelForQuestionAnswering.from_pretrained("distilbert-base-cased-distilled-squad", return_dict=True).half()
 
-# Question answering pipeline
-qa_pipe = transformers.pipeline("question-answering", model=model, tokenizer=tokenizer)
+    # Question answering pipeline
+    qa_pipe = transformers.pipeline("question-answering", model=model, tokenizer=tokenizer)
+    return qa_pipe
+    qa_pipe = load_model()
 
 
 # Streamlit app
