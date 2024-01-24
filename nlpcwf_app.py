@@ -21,6 +21,7 @@ def load_model():
     # Question answering pipeline
     qa_pipe = transformers.pipeline("question-answering", model=model, tokenizer=tokenizer)
     return qa_pipe
+qa_pipe = load_model()
 
 # Streamlit app
 def main():
