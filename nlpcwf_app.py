@@ -28,8 +28,8 @@ def main():
     st.title("Hello Kitty Q&A")
 
     # User input
-    context = "Hello Kitty, is a fictional character created by Yuko Shimizu, currently designed by Yuko Yamaguchi, and owned by the Japanese company Sanrio. Sanrio depicts Hello Kitty as an anthropomorphized white cat with a red bow and no visible mouth. Hello Kitty was created in 1974 and the first item, a vinyl coin purse, was introduced in 1975. Hello Kitty was designed by Yuko Shimizu and was added to the lineup of early Sanrio characters in 1974.Sanrio's motto is "social communication," and Tsuji wanted the brand name to reflect that by including a greeting. He first considered "Hi Kitty" before finally settling on "Hello Kitty," her current name. Spokespeople for Sanrio have said that Hello Kitty has no mouth, as they want people to "project their feelings onto the character" and "be happy or sad together with Hello Kitty. Another explanation Sanrio has given for Hello Kitty's lack of a mouth is that she "speaks from the heart."
-    question = st.text_area("Question", value="What is the answer to...")
+    context = "Hello Kitty, is a fictional character created by Yuko Shimizu, currently designed by Yuko Yamaguchi, and owned by the Japanese company Sanrio. Sanrio depicts Hello Kitty as an anthropomorphized white cat with a red bow and no visible mouth. Hello Kitty was created in 1974 and the first item, a vinyl coin purse, was introduced in 1975. Hello Kitty was designed by Yuko Shimizu and was added to the lineup of early Sanrio characters in 1974.Sanrio's motto is social communication, and Tsuji wanted the brand name to reflect that by including a greeting. Spokespeople for Sanrio have said that Hello Kitty has no mouth, as they want people to project their feelings onto the character and be happy or sad together with Hello Kitty. Another explanation Sanrio has given for Hello Kitty's lack of a mouth is that she speaks from the heart."
+    question = st.text_area("Question", value="")
 
     # Answer button
     if st.button("Get Answer"):
