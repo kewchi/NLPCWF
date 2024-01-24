@@ -18,7 +18,7 @@ tokenizer = transformers.AutoTokenizer.from_pretrained("distilbert-base-cased-di
 model = transformers.AutoModelForQuestionAnswering.from_pretrained("distilbert-base-cased-distilled-squad", return_dict=True).half()
 
 # Question answering pipeline
-qa_pipe = transformers.pipeline("question-answering", model=model, tokenizer=tokenizer, device = 0)
+qa_pipe = transformers.pipeline("question-answering", model=model, tokenizer=tokenizer)
 
 
 # Streamlit app
